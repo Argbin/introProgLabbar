@@ -169,9 +169,73 @@ void trimmedTester(){
     cout << "Test was a success!" << endl;
 }
 
+bool isVokal(char ch){
+    string vokaler = "aeiouyAEIOUY";
+    for(unsigned int i = 0; i < vokaler.size(); ++i){
+        if(vokaler[i] == ch){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool isKonsonant(char ch){
+    string konsonanter = "bcdfghjklmnpqrstvxzBCDFGHJKLMNPQRSTVXZ";
+    for(unsigned int i = 0; i < konsonanter.size(); ++i){
+        if(konsonanter[i] == ch){
+            return true;
+        }
+    }
+    return false;
+}
+
+string isprik(const string& str){
+    string translation;
+    for(unsigned int i = 0; i < str.size(); ++i){
+        if(isVokal(str[i])){
+            translation += 'i';
+        }
+        else{
+            translation += str[i];
+        }
+    }
+    return translation;
+}
+
+string rovarsprak(const string& str){
+    string translation;
+    for(unsigned int i = 0; i < str.size(); ++i){
+        if(isKonsonant(str[i])){
+            translation += tolower(str[i]);
+            translation += 'o';
+            translation += tolower(str[i]);
+        }
+        else{
+            translation += tolower(str[i]);
+        }
+    }
+    translation[0] = toupper(translation[0]);
+    return translation;
+}
+
+string isRovarsprak(const string& str){
+    bool lastWasKonsonant = false;
+    for(unsigned int i = 0; i < str.size(); ++i){
+        if(isKonsonant(str[i]) && lastWasKonsonant == false){
+            if(tolower(str[i+1]) != 'o'){
+                return "falskt";
+            }
+            lastWasKonsonant = true;
+        }
+        else if(isKonsonant(str[i]) && lastWasKonsonant == true){
+            lastWasKonsonant = false;
+        }
+    }
+    return "sant";
+}
 
 void charAndStringIN(){
-    trimmedTester();
+    cout << isRovarsprak("Hej") << endl;
 }
 
 
