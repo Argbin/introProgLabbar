@@ -61,11 +61,19 @@ bool arSorterad(const vector<int>& vek){
 void skrivUtVaxel(int antalKronor){
     const vector<int> valorer{500, 200, 100, 50, 20, 10};
 
+    for(int i = 0; i < 6; ++i){
+        int antalSedlar = floor(antalKronor / valorer[i]);
+        if (antalSedlar == 0)
+            continue;
+        cout << floor(antalKronor / valorer[i]) << " x " << valorer[i] << endl;
+        antalKronor -= valorer[i] * floor(antalKronor / valorer[i]);
+    }
+
+    cout << '\n' << antalKronor << " i rest!" << endl;
 }
 
 void vectorIN(){
-    vector<int> vek{1, 2, 2, 5};
-    cout << arSorterad(vek) << endl;
+    skrivUtVaxel(26575);
 }
 
 
