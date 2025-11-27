@@ -216,12 +216,12 @@ string rovarsprak(const string& str){
     return translation;
 }
 
-string isRovarsprak(const string& str){
+bool isRovarsprak(const string& str){
     bool lastWasKonsonant = false;
     for(size_t i = 0; i < str.size(); ++i){
         if(isKonsonant(str[i]) && lastWasKonsonant == false){
             if(tolower(str[i+1]) != 'o'){
-                return "falskt";
+                return false;
             }
             lastWasKonsonant = true;
         }
@@ -229,12 +229,35 @@ string isRovarsprak(const string& str){
             lastWasKonsonant = false;
         }
     }
-    return "sant";
+    return true;
 }
 
-void charAndStringIN(){
-    cout << trimmed("   Hej    ") << endl;
+string klartextFranRovarsprak(const string& str){
+    string klartext{};
+    if(isRovarsprak(str)){
+        for(size_t i = 0; i < str.size(); ++i){
+            if(isKonsonant(str[i])){
+                klartext += str[i];
+                i += 2;
+            }
+            else if(isVokal(str[i])){
+                klartext += str[i];
+            }
+        }
+        return klartext;
+    }
+    else{
+        return "Detta är inte rövarspråk!";
+    }
 }
+
+
+
+
+void charAndStringIN(){
+    cout << klartextFranRovarsprak(rovarsprak(("Hej"))) << endl;
+}
+
 
 
 
