@@ -54,9 +54,11 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../../kap12Loopar.cpp \
 		../../kap13charOchString.cpp \
+		../../kap14vektorer.cpp \
 		../../main.cpp 
 OBJECTS       = kap12Loopar.o \
 		kap13charOchString.o \
+		kap14vektorer.o \
 		main.o
 DIST          = /usr/lib/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt6/mkspecs/common/unix.conf \
@@ -295,6 +297,7 @@ DIST          = /usr/lib/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt6/mkspecs/features/lex.prf \
 		../../../../introProgLabbar.pro  ../../kap12Loopar.cpp \
 		../../kap13charOchString.cpp \
+		../../kap14vektorer.cpp \
 		../../main.cpp
 QMAKE_TARGET  = introProgLabbar
 DESTDIR       = 
@@ -828,6 +831,9 @@ kap12Loopar.o: ../../kap12Loopar.cpp
 
 kap13charOchString.o: ../../kap13charOchString.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o kap13charOchString.o ../../kap13charOchString.cpp
+
+kap14vektorer.o: ../../kap14vektorer.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o kap14vektorer.o ../../kap14vektorer.cpp
 
 main.o: ../../main.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp

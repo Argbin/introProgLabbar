@@ -1,10 +1,12 @@
 #include <iostream>
 
-// Deklaration - Ett "löfte" om att LoopIN() finns i en annan fil
 void LoopIN();
 void charAndStringIN();
+void vectorIN();
+
+using namespace std;
 
 int main() {
-    charAndStringIN();
+    vectorIN();
     return 0;
 }

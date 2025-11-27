@@ -251,9 +251,6 @@ string klartextFranRovarsprak(const string& str){
     }
 }
 
-
-
-
 void charAndStringIN(){
     cout << klartextFranRovarsprak(rovarsprak(("Hej"))) << endl;
 }

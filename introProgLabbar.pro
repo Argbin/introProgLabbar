@@ -6,4 +6,5 @@ CONFIG -= qt
 SOURCES += \
         kap12Loopar.cpp \
         kap13charOchString.cpp \
+        kap14vektorer.cpp \
         main.cpp
