@@ -125,35 +125,33 @@ void reducedTester(){
 
 string trimmed(const string& str){
 
-    string trimmedStr;
-    int lastCharIndex;
-    int firstCharIndex;
-    bool lastCharIndexFound = false;
-    bool firstCharIndexFound = false;
-
-    //Hitta index på första bokstaven
-    for(unsigned int i = 0; firstCharIndexFound == false && i < str.size()-1; ++i){
-        if(str[i] != ' '){
-            firstCharIndex = i;
-            firstCharIndexFound = true;
-        }
-    }
+    string trimmedStr{};
+    size_t lastCharIndex{};
+    size_t firstCharIndex{};
 
     //Om ingen bokstav hittades, returna ""
-    if(!firstCharIndexFound){
+    if(empty(str)){
         return "";
     }
 
+    //Hitta index på första bokstaven
+    for(size_t i = 0; i < str.size()-1; ++i){
+        if(str[i] != ' '){
+            firstCharIndex = i;
+            break;
+        }
+    }
+
     //Hitta index för sista bokstaven
-    for(unsigned int i = str.size()-1; lastCharIndexFound == false; --i){
+    for(size_t i = str.size()-1; i >= firstCharIndex; --i){
         if(str[i] != ' '){
             lastCharIndex = i;
-            lastCharIndexFound = true;
+            break;
         }
     }
 
     //Skapa en string som innegåller första och sista bokstaven sammt allt däremellan
-    for(int i = firstCharIndex; i <= lastCharIndex; ++i){
+    for(size_t i = firstCharIndex; i <= lastCharIndex; ++i){
         trimmedStr += str[i];
     }
 
@@ -204,7 +202,7 @@ string isprik(const string& str){
 
 string rovarsprak(const string& str){
     string translation;
-    for(unsigned int i = 0; i < str.size(); ++i){
+    for(size_t i = 0; i < str.size(); ++i){
         if(isKonsonant(str[i])){
             translation += tolower(str[i]);
             translation += 'o';
@@ -220,7 +218,7 @@ string rovarsprak(const string& str){
 
 string isRovarsprak(const string& str){
     bool lastWasKonsonant = false;
-    for(unsigned int i = 0; i < str.size(); ++i){
+    for(size_t i = 0; i < str.size(); ++i){
         if(isKonsonant(str[i]) && lastWasKonsonant == false){
             if(tolower(str[i+1]) != 'o'){
                 return "falskt";
@@ -235,7 +233,7 @@ string isRovarsprak(const string& str){
 }
 
 void charAndStringIN(){
-    cout << isRovarsprak("Hej") << endl;
+    cout << trimmed("   Hej    ") << endl;
 }
 
 
