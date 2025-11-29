@@ -4,6 +4,7 @@
 #include <cassert>
 #include <cctype>
 #include <vector>
+#include <array>
 
 using namespace std;
 
@@ -112,20 +113,97 @@ int lottoSpel(vector<int>& playerNums){
     cout << endl;
 
     for(size_t i = 0; i < playerNums.size(); ++i){
-        for(size_t n = 0; n < slumpTal.size(); ++n){
-            if(playerNums[i] == slumpTal[n]){
-                points += 1;
-                break;
-            }
+        if(innehaller(slumpTal, playerNums[i])){
+            points += 1;
         }
     }
 
     return points;
 }
 
+void provaMatris(){
+    array<array<int, 6>, 3> m{{
+            {{20, 21, 22, 23, 24, 25}},
+            {{2, 3, 4 , 5, 6, 7}},
+            {{7, 11, 13, 17, 19, 23}}
+    }};
+
+    const int antalRader = m.size();
+    const int antalKolumner = m[0].size();
+
+    for(int r = 0; r < antalRader; ++r){
+        for(int k = 0; k < antalKolumner; ++k){
+            cout << '\t' << m[r][k];
+            cout << endl;
+        }
+        cout << endl;
+    }
+}
+
+bool arNoll(int i){
+    if(i == 0){
+        return true;
+    }
+    else return false;
+}
+
+void skrivutSudoku(const array<array<int,9>,9>& sudoku){
+    cout << "+---------+---------+---------+" << endl;
+
+    for(size_t r = 0; r < sudoku.size(); ++r){
+        for(size_t k = 0; k < sudoku[0].size(); ++k){
+            if(k == 0){
+                if(arNoll(sudoku[r][k])){
+                    cout << '|' << ' ' << ' ';
+                }
+                else{
+                    cout << '|' << ' ' << sudoku[r][k];
+                }
+            }
+            else if(k == 1 || k == 2 || k == 4 || k == 5 || k == 7 || k == 8){
+                if(arNoll(sudoku[r][k])){
+                    cout << ' ' << ' ' << ' ';
+                }
+                else{
+                    cout << ' ' << ' ' << sudoku[r][k];
+                }
+            }
+            else if(k == 3 || k == 6){
+                if(arNoll(sudoku[r][k])){
+                    cout << ' ' << '|'  << ' ' << ' ';
+                }
+                else{
+                    cout << ' ' << '|'  << ' ' << sudoku[r][k];
+                }
+            }
+        }
+
+        cout << ' ' << '|' << endl;
+        if(r == 2 || r == 5){
+            cout << "+---------+---------+---------+" << endl;
+        }
+    }
+
+    cout << "+---------+---------+---------+" << endl;
+}
+
+void provaSkrivSudoku(){
+    array<array<int, 9>,9> sudoku{{
+        {{6,0,2,5,8,1,3,9,7}},
+        {{7,8,1,9,0,4,5,2,0}},
+        {{5,0,0,6,2,7,8,0,1}},
+        {{0,7,4,2,9,0,6,8,3}},
+        {{9,3,8,4,1,0,2,0,5}},
+        {{2,6,5,0,7,3,0,0,4}},
+        {{0,5,6,0,4,2,7,3,9}},
+        {{0,2,0,3,6,9,1,5,8}},
+        {{3,1,9,0,0,8,0,6,0}}
+    }};
+    skrivutSudoku(sudoku);
+}
+
 void vectorIN(){
-    vector<int> input{1,2,3,4,5};
-    cout << lottoSpel(input) << endl;
+    provaSkrivSudoku();
 }
 
 
