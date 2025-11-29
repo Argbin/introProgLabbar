@@ -72,9 +72,72 @@ void skrivUtVaxel(int antalKronor){
     cout << '\n' << antalKronor << " i rest!" << endl;
 }
 
-void vectorIN(){
-    skrivUtVaxel(26575);
+vector<int> fyllMedUnikaSlumptal(vector<int> vek, size_t minst, size_t storst){
+    fyllMedVarde(vek, 0);
+    srand(time(NULL));
+    int randomNum{};
+
+    if(!(vek.size() <= storst - minst + 1)){
+        cout << "Det givna intervallet är inte tillräckligt stort för att ge alla index i vectorn unika slumpmässiga tal! '\n" << endl;;
+        assert(false);
+    }
+
+    for(size_t i = 0; i < vek.size(); ++i){
+        bool dublett = true;
+
+        while(dublett){
+            randomNum = minst + (rand() % (storst - minst + 1));
+            for(size_t i = 0; dublett; ++i){
+                if(vek[i] == randomNum){
+                    break;
+                }
+                if(i == vek.size() - 1){
+                    dublett = false;
+                }
+            }
+        }
+
+        vek[i] = randomNum;
+    }
+    return vek;
 }
+
+int lottoSpel(vector<int>& playerNums){
+    vector<int> slumpTal = {0,0,0,0,0,0,0};
+    int points = 0;
+    slumpTal = fyllMedUnikaSlumptal(slumpTal, 1, 35);
+
+    cout << "De slumpade talen var:" << endl;
+    skrivUtVek(slumpTal);
+    cout << endl;
+
+    for(size_t i = 0; i < playerNums.size(); ++i){
+        for(size_t n = 0; n < slumpTal.size(); ++n){
+            if(playerNums[i] == slumpTal[n]){
+                points += 1;
+                break;
+            }
+        }
+    }
+
+    return points;
+}
+
+void vectorIN(){
+    vector<int> input{1,2,3,4,5};
+    cout << lottoSpel(input) << endl;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
