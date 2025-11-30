@@ -203,7 +203,12 @@ void provaSkrivSudoku(){
 }
 
 void sorteraMedSelectionsort(vector<int>& vek){
-
+    for(size_t i = 0; i < vek.size(); ++i){
+        int minstTalIndex  = minst(vek, i)[1];
+        int minstTal = vek[minstTalIndex];
+        vek[minstTalIndex] = vek[i];
+        vek[i] = minstTal;
+    }
 }
 
 void sorteraMedBubbelsort(vector<int>& vek){
@@ -211,8 +216,9 @@ void sorteraMedBubbelsort(vector<int>& vek){
 }
 
 void vectorIN(){
-    vector<int> test{1,2,3,4};
-    skrivUtVek(minst(test, 0));
+    vector<int> test{2,3,3,5,6,2,1,2,3};
+    sorteraMedSelectionsort(test);
+    skrivUtVek(test);
 }
 
 
