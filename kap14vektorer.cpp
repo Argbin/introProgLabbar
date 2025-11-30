@@ -28,10 +28,10 @@ bool innehaller(const vector<int>& vek, int varde){
     return false;
 }
 
-vector<int> minst(const vector<int>& vek){
-    vector<int> minst{vek[0], 0};
-    for(size_t i = 0; i < vek.size(); ++i){
-        if(vek[i] < minst[0]){
+vector<int> minst(const vector<int>& vek, size_t startIndex){
+    vector<int> minst{vek[startIndex], 0};
+    for(size_t i = startIndex; i <= vek.size()-1; ++i){
+        if(vek[i] <= minst[0]){
             minst[0] = vek[i];
             minst[1] = i;
         }
@@ -202,8 +202,17 @@ void provaSkrivSudoku(){
     skrivutSudoku(sudoku);
 }
 
+void sorteraMedSelectionsort(vector<int>& vek){
+
+}
+
+void sorteraMedBubbelsort(vector<int>& vek){
+
+}
+
 void vectorIN(){
-    provaSkrivSudoku();
+    vector<int> test{1,2,3,4};
+    skrivUtVek(minst(test, 0));
 }
 
 
