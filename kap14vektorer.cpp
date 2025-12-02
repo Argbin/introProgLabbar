@@ -212,12 +212,26 @@ void sorteraMedSelectionsort(vector<int>& vek){
 }
 
 void sorteraMedBubbelsort(vector<int>& vek){
-
+    bool sorterad = false;
+    while(!sorterad){
+        int andringar = 0;
+        for(size_t i = 0; i < vek.size()-1; ++i){
+           if(vek[i] > vek[i+1]){
+                int placeHolder = vek[i];
+                vek[i] = vek[i+1];
+                vek[i+1] = placeHolder;
+                andringar += 1;
+            }
+        }
+        if(andringar == 0){
+            sorterad = true;
+        }
+    }
 }
 
 void vectorIN(){
-    vector<int> test{2,3,3,5,6,2,1,2,3};
-    sorteraMedSelectionsort(test);
+    vector<int> test{4,3,2,1};
+    sorteraMedBubbelsort(test);
     skrivUtVek(test);
 }
 
