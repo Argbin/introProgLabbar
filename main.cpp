@@ -3,10 +3,11 @@
 void LoopIN();
 void charAndStringIN();
 void vectorIN();
+void structIN();
 
 using namespace std;
 
 int main() {
-    vectorIN();
+    structIN();
     return 0;
 }
