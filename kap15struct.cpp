@@ -30,36 +30,16 @@ Vaxel3 vaxel3FranAntal(int a500, int a200, int a100, int a20, int a10, int a5, i
     return i;
 }
 
-Vaxel3 vaxel3FranBelop(int belop){
+Vaxel3 vaxel3FranBelop(int belopp){
     Vaxel3 i{};
-    while(belop%500 > 200){
-        i.m_antal500 += 1;
-        belop -= 500;
-    }
-    while(belop%200 > 100){
-        i.m_antal200 += 1;
-        belop -= 200;
-    }
-    while(belop%100 > 20){
-        i.m_antal100 += 1;
-        belop -= 100;
-    }
-    while(belop%20 > 10){
-        i.m_antal20 += 1;
-        belop -= 20;
-    }
-    while(belop%10 > 5){
-        i.m_antal10 += 1;
-        belop -= 10;
-    }
-    while(belop%5 > 1){
-        i.m_antal5 += 1;
-        belop -= 5;
-    }
-    while(belop%1 != 0){
-        i.m_antal1 += 1;
-        belop -= 1;
-    }
+    i.m_antal500 = floor(belopp / 500);
+    i.m_antal200 = floor((belopp - i.m_antal500 * 500) / 200);
+    i.m_antal100 = floor((belopp - i.m_antal500 * 500 - i.m_antal200 * 200) / 100);
+    i.m_antal20 = floor((belopp - i.m_antal500 * 500 - i.m_antal200 * 200 - i.m_antal100 * 100) / 20);
+    i.m_antal10 = floor((belopp - i.m_antal500 * 500 - i.m_antal200 * 200 - i.m_antal100 * 100 - i.m_antal20 * 20) / 10);
+    i.m_antal5 = floor((belopp - i.m_antal500 * 500 - i.m_antal200 * 200 - i.m_antal100 * 100 - i.m_antal20 * 20 - i.m_antal10 * 10) / 5);
+    i.m_antal1 = floor(belopp - i.m_antal500 * 500 - i.m_antal200 * 200 - i.m_antal100 * 100 - i.m_antal20 * 20 - i.m_antal10 * 10 - i.m_antal5 * 5);
+
     return i;
 }
 
@@ -72,8 +52,6 @@ void structIN(){
     cout <<  i.m_antal10 << endl;
     cout <<  i.m_antal5 << endl;
     cout <<  i.m_antal1 << endl;
-
-
 }
 
 
